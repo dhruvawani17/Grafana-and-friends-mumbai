@@ -891,7 +891,430 @@ section {
 }
 
 .back-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 103, 29, 0.4);
-    background: linear-gradient(135deg, #F7931E, #ff671d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 103, 29, 0.4);
+        background: linear-gradient(135deg, #F7931E, #ff671d);
+    }
 }
+
+/* Badge Generator Page Styles */
+
+/* Badge Generator Page Styles */
+.badge-hero {
+    background: linear-gradient(135deg, #ff671d 0%, #F7931E 50%, #ff671d 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.badge-hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.badge-subtitle {
+    font-size: 1rem !important;
+    opacity: 0.8 !important;
+}
+
+.badge-generator-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.badge-generator-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.badge-generator-container h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+
+.badge-generator-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #ff671d, #F7931E);
+    border-radius: 2px;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 3rem;
+}
+
+.upload-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.upload-option {
+    text-align: center;
+}
+
+.upload-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff671d, #F7931E);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(255, 103, 29, 0.3);
+}
+
+.upload-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 103, 29, 0.4);
+}
+
+.upload-button i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.upload-option p {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Frame Selection */
+.frame-section {
+    margin-bottom: 3rem;
+}
+
+.frame-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.frame-option {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.frame-option.active {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 103, 29, 0.3);
+    border: 3px solid #ff671d;
+}
+
+.frame-preview {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    min-width: 150px;
+}
+
+.frame-border {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    position: relative;
+    border: 4px solid #ff671d;
+}
+
+.classic-frame {
+    background: linear-gradient(45deg, #ff671d, #F7931E);
+}
+
+.tech-frame {
+    background: linear-gradient(45deg, #2196F3, #21CBF3);
+    border-color: #2196F3;
+}
+
+.community-frame {
+    background: linear-gradient(45deg, #FF9800, #FFC107);
+    border-color: #FF9800;
+}
+
+.frame-preview span {
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Preview Section */
+.preview-section {
+    margin-bottom: 3rem;
+}
+
+.badge-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.badge-canvas {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    max-width: 400px;
+}
+
+.badge-frame {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.badge-frame.classic-frame {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.badge-frame.tech-frame {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.badge-frame.community-frame {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%);
+}
+
+#userImage {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+}
+
+.badge-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.badge-text h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.badge-text p {
+    margin-bottom: 0.3rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.badge-text .event-date {
+    color: #ff671d;
+    font-weight: 600;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.download-button,
+.reset-button {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.download-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+.download-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.reset-button {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+}
+
+/* Instructions Section */
+.instructions-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.instructions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.instruction-item {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.instruction-item:hover {
+    transform: translateY(-5px);
+}
+
+.instruction-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff671d, #F7931E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 103, 29, 0.3);
+}
+
+.instruction-item h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.instruction-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Camera Modal */
+.camera-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.camera-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.camera-preview {
+    margin-bottom: 2rem;
+}
+
+#cameraVideo {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.capture-button,
+.cancel-button {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.capture-button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.capture-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.cancel-button {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+    color: white;
+}
+
+.cancel-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Members Grid */

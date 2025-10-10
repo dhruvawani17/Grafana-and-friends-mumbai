@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Badge Generator - Grafana & Friends Mumbai</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+    <!-- Meta tags -->
+    <meta name="description" content="Create your Grafana Community Mumbai event badge">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/grafana logo png.webp" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/grafana logo png.webp">
+</head>
+
+<body class="home wp-singular grafana-community-day">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/gtm.html?id=GTM-ND8LF72P" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <div id="page-container">
+        <div id="et-boc" class="et-boc">
+            <div id="main-content">
+
+                <!-- Navigation -->
+                <nav class="main-navigation">
+                    <div class="nav-container">
+                        <div class="logo">
+                            <img src="images/grafana logo png.webp" alt="Grafana and friends Mumbai">
+                            <div class="logo-text">
+                                <span class="brand-name">Grafana & Friends Mumbai</span>
+                            </div>
+                        </div>
+                        <ul class="nav-menu">
+                            <li><a href="index.html#top-page">Home</a></li>
+                            <li><a href="index.html#members">Members</a></li>
+                            <li><a href="index.html#schedule">Agenda</a></li>
+                            <li><a href="index.html#sponsors-mobile">Sponsors</a></li>
+                            <li><a href="index.html#about-us">About us</a></li>
+                            <li><a href="index.html#gallery">Past Events</a></li>
+                            <li><a href="badge.html">Badge</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Badge Generator Hero -->
+                <section class="badge-hero">
+                    <div class="container">
+                        <div class="badge-hero-content">
+                            <h1>🎫 Event Badge Generator</h1>
+                            <p>Create your personalized Grafana Community Mumbai event badge</p>
+                            <p class="badge-subtitle">Upload a photo, choose a frame, and download your badge instantly!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Badge Generator Section -->
+                <section class="badge-generator-section">
+                    <div class="container">
+                        <div class="badge-generator-container">
+
+                            <!-- Upload Section -->
+                            <div class="upload-section">
+                                <h2>Step 1: Upload Your Photo</h2>
+                                <div class="upload-options">
+                                    <div class="upload-option">
+                                        <button id="uploadBtn" class="upload-button">
+                                            <i class="fas fa-upload"></i>
+                                            Upload Image
+                                        </button>
+                                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                        <p>Choose from gallery</p>
+                                    </div>
+                                    <div class="upload-option">
+                                        <button id="cameraBtn" class="upload-button">
+                                            <i class="fas fa-camera"></i>
+                                            Open Camera
+                                        </button>
+                                        <p>Take a new photo</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Frame Selection -->
+                            <div class="frame-section">
+                                <h2>Step 2: Choose Your Frame</h2>
+                                <div class="frame-options">
+                                    <div class="frame-option active" data-frame="classic">
+                                        <img src="images/frame-classic.png" alt="Classic Frame" onerror="this.style.display='none'">
+                                        <div class="frame-preview">
+                                            <div class="frame-border classic-frame"></div>
+                                            <span>Classic</span>
+                                        </div>
+                                    </div>
+                                    <div class="frame-option" data-frame="tech">
+                                        <img src="images/frame-tech.png" alt="Tech Frame" onerror="this.style.display='none'">
+                                        <div class="frame-preview">
+                                            <div class="frame-border tech-frame"></div>
+                                            <span>Tech</span>
+                                        </div>
+                                    </div>
+                                    <div class="frame-option" data-frame="community">
+                                        <img src="images/frame-community.png" alt="Community Frame" onerror="this.style.display='none'">
+                                        <div class="frame-preview">
+                                            <div class="frame-border community-frame"></div>
+                                            <span>Community</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preview Section -->
+                            <div class="preview-section">
+                                <h2>Step 3: Preview Your Badge</h2>
+                                <div class="badge-preview-container">
+                                    <div class="badge-canvas" id="badgeCanvas">
+                                        <div class="badge-frame" id="badgeFrame">
+                                            <img id="userImage" src="" alt="Your Photo" style="display: none;">
+                                            <div class="badge-overlay" id="badgeOverlay">
+                                                <div class="badge-text">
+                                                    <h3>Grafana & Friends Mumbai</h3>
+                                                    <p>Community Member</p>
+                                                    <p class="event-date">November 15, 2025</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-actions">
+                                        <button id="downloadBtn" class="download-button" disabled>
+                                            <i class="fas fa-download"></i>
+                                            Download Badge
+                                        </button>
+                                        <button id="resetBtn" class="reset-button">
+                                            <i class="fas fa-redo"></i>
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Instructions Section -->
+                <section class="instructions-section">
+                    <div class="container">
+                        <h2>How to Use the Badge Generator</h2>
+                        <div class="instructions-grid">
+                            <div class="instruction-item">
+                                <div class="instruction-icon">
+                                    <i class="fas fa-upload"></i>
+                                </div>
+                                <h3>Upload Photo</h3>
+                                <p>Choose a clear, professional photo from your gallery or take a new one with your camera.</p>
+                            </div>
+                            <div class="instruction-item">
+                                <div class="instruction-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h3>Select Frame</h3>
+                                <p>Pick from our collection of themed frames that match the Grafana community aesthetic.</p>
+                            </div>
+                            <div class="instruction-item">
+                                <div class="instruction-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <h3>Preview</h3>
+                                <p>See how your badge will look with the chosen frame and make adjustments if needed.</p>
+                            </div>
+                            <div class="instruction-item">
+                                <div class="instruction-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <h3>Download</h3>
+                                <p>Save your personalized badge as a high-quality image for printing or sharing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+    <script src="badge-generator.js"></script>
+
+    <!-- External Libraries -->
+    <script src="https://acd.awsugmum.in/wp-includes/js/jquery/jquery.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=GT-P3MHJGP" async></script>
+</body>
+</html>
