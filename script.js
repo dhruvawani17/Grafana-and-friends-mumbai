@@ -196,5 +196,272 @@ function initCountdown() {
 
 // Initialize countdown when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    initLoading();
     initCountdown();
+    initAnimations();
+    initScrollAnimations();
+    initParallaxEffects();
+    initMagneticEffects();
+    initParticleSystem();
+});
+
+// Loading animation
+function initLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    // Simulate loading time
+    setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+        
+        // Start page animations after loading
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            // Trigger entrance animations
+            triggerEntranceAnimations();
+        }, 800);
+    }, 3000);
+}
+
+// Trigger entrance animations for main elements
+function triggerEntranceAnimations() {
+    const hero = document.querySelector('.hero-section');
+    const nav = document.querySelector('.nav-content');
+    
+    if (hero) {
+        hero.style.animation = 'slideInUp 1s ease-out forwards';
+    }
+    
+    if (nav) {
+        nav.style.animation = 'slideInDown 0.8s ease-out forwards';
+    }
+}
+
+// Particle system
+function initParticleSystem() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random starting position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        
+        // Random size
+        const size = Math.random() * 6 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        particlesContainer.appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 15000);
+    }
+
+    // Create initial particles
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createParticle, i * 300);
+    }
+
+    // Continuously create particles
+    setInterval(createParticle, 800);
+}
+
+// Magnetic effects for interactive elements
+function initMagneticEffects() {
+    const magneticElements = document.querySelectorAll('.nav-menu a, button, .member-card, .highlight-item');
+    
+    magneticElements.forEach(element => {
+        element.addEventListener('mousemove', function(e) {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const deltaX = (x - centerX) * 0.15;
+            const deltaY = (y - centerY) * 0.15;
+            
+            element.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            element.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+    });
+}
+
+// Enhanced countdown with animations
+function initCountdown() {
+    const eventDate = new Date("November 15, 2025 09:00:00").getTime();
+    
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Animate number changes
+        animateCounterUpdate('days', days);
+        animateCounterUpdate('hours', hours);
+        animateCounterUpdate('minutes', minutes);
+        animateCounterUpdate('seconds', seconds);
+        
+        if (distance < 0) {
+            clearInterval(timer);
+            document.querySelectorAll('.countdown-number').forEach(el => {
+                el.innerHTML = "00";
+                el.style.animation = "pulse 1s ease-in-out infinite";
+            });
+        }
+    }, 1000);
+}
+
+function animateCounterUpdate(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        const currentValue = element.innerHTML;
+        const newValue = String(value).padStart(2, '0');
+        
+        if (currentValue !== newValue) {
+            element.style.transform = 'scale(1.2) rotateY(180deg)';
+            element.style.color = '#ff671d';
+            
+            setTimeout(() => {
+                element.innerHTML = newValue;
+                element.style.transform = 'scale(1) rotateY(0deg)';
+                element.style.color = '';
+            }, 150);
+        }
+    }
+}
+
+// Initialize scroll-triggered animations
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = entry.target.dataset.animation || 'fadeInUp 0.8s ease-out forwards';
+                entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.highlight-item, .member-card, .event-card').forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.dataset.animation = 'fadeInUp 0.8s ease-out forwards';
+        el.dataset.delay = `${index * 0.1}s`;
+        observer.observe(el);
+    });
+}
+
+// Initialize general animations
+function initAnimations() {
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.highlight-item, .member-card, .event-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) rotateX(5deg) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(255, 103, 29, 0.2)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotateX(0) scale(1)';
+            this.style.boxShadow = '';
+        });
+    });
+
+    // Add click ripple effect
+    document.querySelectorAll('button, .nav-menu a, .event-button').forEach(element => {
+        element.addEventListener('click', createRipple);
+    });
+}
+
+// Parallax effects
+function initParallaxEffects() {
+    // Parallax effects can be added here for other elements if needed
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        // Add parallax effects for other elements here if needed
+    });
+}
+
+// Create ripple effect
+function createRipple(event) {
+    const button = event.currentTarget;
+    const circle = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.classList.add('ripple');
+
+    const ripple = button.getElementsByClassName('ripple')[0];
+    if (ripple) {
+        ripple.remove();
+    }
+
+    button.appendChild(circle);
+}
+
+// Mobile menu toggle functionality
+function toggleMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    
+    navMenu.classList.toggle('active');
+    
+    // Change icon based on menu state
+    const icon = toggleButton.querySelector('i');
+    if (navMenu.classList.contains('active')) {
+        icon.className = 'fas fa-times';
+    } else {
+        icon.className = 'fas fa-bars';
+    }
+}
+
+// Close mobile menu when clicking on a link
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navMenu = document.getElementById('navMenu');
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            if (toggleButton) {
+                const icon = toggleButton.querySelector('i');
+                icon.className = 'fas fa-bars';
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-container') && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            if (toggleButton) {
+                const icon = toggleButton.querySelector('i');
+                icon.className = 'fas fa-bars';
+            }
+        }
+    });
 });

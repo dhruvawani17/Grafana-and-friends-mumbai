@@ -1,96 +1,145 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    
+
     <title>Grafana Mumbai 2025 | Grafana User Group Mumbai</title>
-    
+
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    
+
     <!-- Meta tags -->
     <meta name="robots" content="max-image-preview:large">
     <meta name="generator" content="Grafana Mumbai 2025">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="images/grafana-logo.png" sizes="32x32">
     <link rel="apple-touch-icon" href="images/grafana-logo.png">
 </head>
 
-<body class="home wp-singular grafana-community-day">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/gtm.html?id=GTM-ND8LF72P" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    
-    <div id="page-container">
-        <div id="et-boc" class="et-boc">
-            <div id="main-content">
-                
-                <!-- Navigation -->
-                <nav class="main-navigation">
-                    <div class="nav-container">
-                        <div class="logo">
-                            <img src="images/grafana logo png.webp" alt="Grafana and friends Mumbai">
-                            <div class="logo-text">
-                                <span class="brand-name">Grafana & Friends Mumbai</span>
-                            </div>
-                        </div>
-                        <ul class="nav-menu">
-                            <li><a href="#top-page">Home</a></li>
-                            <li><a href="#members">Members</a></li>
-                            <li><a href="#schedule">Agenda</a></li>
-                            <li><a href="#sponsors-mobile">Sponsors</a></li>
-                            <li><a href="#about-us">About us</a></li>
-                            <li><a href="#gallery">Past Events</a></li>
-                            <li><a href="badge.html">Badge</a></li>
-                        </ul>
-                    </div>
-                </nav>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <!-- <div class="loading-ring"></div>
+                <div class="loading-ring"></div>
+                <div class="loading-ring"></div> -->
+                <div class="loading-text">GRAFANA</div>
+            </div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+            <p class="loading-message">Preparing something amazing...</p>
+        </div>
+    </div>
 
-                <!-- Hero Section -->
-                <section id="top-page" class="hero-section">
-                    <!-- Floating Tech Icons -->
-                    <div class="floating-icon">
-                        <i class="fas fa-chart-line" style="font-size: 3rem; color: rgba(255,255,255,0.2);"></i>
-                    </div>
-                    <div class="floating-icon">
-                        <i class="fas fa-server" style="font-size: 2.5rem; color: rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="floating-icon">
-                        <i class="fas fa-database" style="font-size: 3.5rem; color: rgba(255,255,255,0.1);"></i>
-                    </div>
-                    
-                    <div">
-                        <img src="images/Grafana Linkedin Account Banner.png" alt="">
-                        
-                        <!-- Event Countdown -->
-                        <div class="countdown-container">
-                            <div class="countdown-item">
-                                <span class="countdown-number" id="days">--</span>
-                                <span class="countdown-label">days</span>
+    <!-- Particle System -->
+    <div class="particles" id="particles"></div>
+
+    <header class="header" <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/gtm.html?id=GTM-ND8LF72P" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+        <div id="page-container">
+            <div id="et-boc" class="et-boc">
+                <div id="main-content">
+
+                    <!-- Navigation -->
+                    <nav class="main-navigation">
+                        <div class="nav-container">
+                            <div class="logo">
+                                <img src="images/grafana logo png.webp" alt="Grafana and friends Mumbai">
+                                <div class="logo-text">
+                                    <span class="brand-name">Grafana & Friends Mumbai</span>
+                                </div>
                             </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number" id="hours">--</span>
-                                <span class="countdown-label">hrs</span>
+                            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <ul class="nav-menu" id="navMenu">
+                                <li><a href="#top-page">Home</a></li>
+                                <li><a href="#members">Members</a></li>
+                                <li><a href="#schedule">Agenda</a></li>
+                                <li><a href="#sponsors-mobile">Sponsors</a></li>
+                                <li><a href="#about-us">About us</a></li>
+                                <li><a href="#gallery">Past Events</a></li>
+                                <li><a href="badge.html">Badge</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <!-- Hero Section -->
+                    <section id="top-page" class="hero-section">
+                        <div class="hero-container">
+                            <!-- Decorative Background Elements -->
+                            <div class="hero-bg-shapes">
+                                <div class="bg-circle bg-circle-1"></div>
+                                <div class="bg-circle bg-circle-2"></div>
+                                <div class="bg-circle bg-circle-3"></div>
+                                <div class="bg-circle bg-circle-4"></div>
                             </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number" id="minutes">--</span>
-                                <span class="countdown-label">mins</span>
+                            
+                            <!-- Hero Content -->
+                            <div class="hero-content">
+                                <!-- Left Side - Grafana Logo -->
+                                <!-- <div class="hero-left">
+                                    <div class="grafana-logo">
+                                        <div class="gear-outer">
+                                            <div class="gear-inner">
+                                                <div class="gear-center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                
+                                <!-- Right Side - Text Content -->
+                                <div class="hero-right">
+                                    <h1 class="hero-title">
+                                        <span class="title-main">Grafana &</span>
+                                        <span class="title-sub">Friends Mumbai</span>
+                                    </h1>
+                                    <p class="hero-subtitle">We Invite You to</p>
+                                    
+                                    <div class="event-info">
+                                        <h2 class="event-title">Upcoming Event</h2>
+                                        <div class="event-date">15 Nov 2025</div>
+                                    </div>
+                                </div>
+                                
+                             
                             </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number" id="seconds">--</span>
-                                <span class="countdown-label">secs</span>
+                            
+                            <!-- Event Countdown -->
+                            <div class="countdown-container">
+                                <div class="countdown-item">
+                                    <span class="countdown-number" id="days">--</span>
+                                    <span class="countdown-label">days</span>
+                                </div>
+                                <div class="countdown-item">
+                                    <span class="countdown-number" id="hours">--</span>
+                                    <span class="countdown-label">hrs</span>
+                                </div>
+                                <div class="countdown-item">
+                                    <span class="countdown-number" id="minutes">--</span>
+                                    <span class="countdown-label">mins</span>
+                                </div>
+                                <div class="countdown-item">
+                                    <span class="countdown-number" id="seconds">--</span>
+                                    <span class="countdown-label">secs</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
                 <!-- Highlights Section -->
                 <section id="highlights" class="highlights-section">
@@ -100,22 +149,26 @@
                             <div class="highlight-item">
                                 <img src="images/software-20.png" alt="Expert Talks">
                                 <h3>Expert Talks</h3>
-                                <p>See and learn the details of what industry leaders and SMEs are building on the Grafana cloud and how they are leveraging Grafana services for the future!</p>
+                                <p>See and learn the details of what industry leaders and SMEs are building on the
+                                    Grafana cloud and how they are leveraging Grafana services for the future!</p>
                             </div>
                             <div class="highlight-item">
                                 <img src="images/software-20.png" alt="Hands On">
                                 <h3>Hands On</h3>
-                                <p>Instructor-led hands-on Grafana demo projects to learn how to build real-world applications using Grafana services and leading technologies.</p>
+                                <p>Instructor-led hands-on Grafana demo projects to learn how to build real-world
+                                    applications using Grafana services and leading technologies.</p>
                             </div>
                             <div class="highlight-item">
                                 <img src="images/software-20.png" alt="Quiz On!">
                                 <h3>Quiz On!</h3>
-                                <p>Participate in all-day-long interesting Grafana quizzes, that puts your cloud knowledge to the test. Top the leaderboard to win amazing prizes!</p>
+                                <p>Participate in all-day-long interesting Grafana quizzes, that puts your cloud
+                                    knowledge to the test. Top the leaderboard to win amazing prizes!</p>
                             </div>
                             <div class="highlight-item">
                                 <img src="images//software-20.png" alt="Networking">
                                 <h3>Networking</h3>
-                                <p>An excellent platform for professionals to connect and network with like-minded individuals, industry experts, Grafana and potential collaborators.</p>
+                                <p>An excellent platform for professionals to connect and network with like-minded
+                                    individuals, industry experts, Grafana and potential collaborators.</p>
                             </div>
                         </div>
                     </div>
@@ -203,7 +256,10 @@
                     <div class="container">
                         <h2>About us</h2>
                         <div class="about-content">
-                            <p>Grafana User Groups are run by independent volunteers and are not affiliated with Grafana. Our community is dedicated to bringing together Grafana enthusiasts, practitioners, and experts to share knowledge, best practices, and innovations in observability and monitoring.</p>
+                            <p>Grafana User Groups are run by independent volunteers and are not affiliated with
+                                Grafana. Our community is dedicated to bringing together Grafana enthusiasts,
+                                practitioners, and experts to share knowledge, best practices, and innovations in
+                                observability and monitoring.</p>
                         </div>
                     </div>
                 </section>
@@ -222,7 +278,9 @@
                                     <div class="event-details">
                                         <h3>Grafana Community Meetup 2024</h3>
                                         <p class="event-date">📅 12th July 2025</p>
-                                        <p class="event-description">Our first successful community meetup featuring expert talks on observability, monitoring dashboards, and real-world Grafana implementations.</p>
+                                        <p class="event-description">Our first successful community meetup featuring
+                                            expert talks on observability, monitoring dashboards, and real-world Grafana
+                                            implementations.</p>
                                         <div class="event-stats">
                                             <span>👥 150+ Attendees</span>
                                             <span>🎤 8 Speakers</span>
@@ -238,14 +296,15 @@
 
             </div>
         </div>
-    </div>
+        </div>
 
-    <!-- External JavaScript -->
-    <script src="script.js"></script>
-    
-    <!-- External Libraries -->
-    <script src="https://acd.awsugmum.in/wp-includes/js/jquery/jquery.min.js"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=GT-P3MHJGP" async></script>
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.es6.js" defer></script>
+        <!-- External JavaScript -->
+        <script src="script.js"></script>
+
+        <!-- External Libraries -->
+        <script src="https://acd.awsugmum.in/wp-includes/js/jquery/jquery.min.js"></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=GT-P3MHJGP" async></script>
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.es6.js" defer></script>
 </body>
+
 </html>
