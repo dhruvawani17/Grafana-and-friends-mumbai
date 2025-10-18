@@ -465,3 +465,154 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Event Gallery Carousel Functionality
+function initCarousel() {
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevButton = document.getElementById('carouselPrev');
+    const nextButton = document.getElementById('carouselNext');
+    
+    if (!track || slides.length === 0) return;
+    
+    let currentSlide = 0;
+    let isTransitioning = false;
+    let autoplayInterval;
+    
+    function updateCarousel(slideIndex, animate = true) {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        
+        // Update active slide
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === slideIndex);
+        });
+        
+        // Update active indicator
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === slideIndex);
+        });
+        
+        // Move track
+        const translateX = -slideIndex * 100;
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        currentSlide = slideIndex;
+        
+        setTimeout(() => {
+            isTransitioning = false;
+        }, animate ? 500 : 0);
+    }
+    
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        updateCarousel(nextIndex);
+    }
+    
+    function prevSlide() {
+        const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+        updateCarousel(prevIndex);
+    }
+    
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 4000);
+    }
+    
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+    
+    // Event listeners
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            stopAutoplay();
+            nextSlide();
+            setTimeout(startAutoplay, 2000);
+        });
+    }
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            stopAutoplay();
+            prevSlide();
+            setTimeout(startAutoplay, 2000);
+        });
+    }
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            stopAutoplay();
+            updateCarousel(index);
+            setTimeout(startAutoplay, 2000);
+        });
+    });
+    
+    // Pause autoplay on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoplay);
+        carouselContainer.addEventListener('mouseleave', startAutoplay);
+    }
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        stopAutoplay();
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    });
+    
+    track.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diffX = startX - currentX;
+        const threshold = 50;
+        
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        
+        setTimeout(startAutoplay, 2000);
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (document.querySelector('.carousel-container:hover')) {
+            if (e.key === 'ArrowLeft') {
+                stopAutoplay();
+                prevSlide();
+                setTimeout(startAutoplay, 2000);
+            } else if (e.key === 'ArrowRight') {
+                stopAutoplay();
+                nextSlide();
+                setTimeout(startAutoplay, 2000);
+            }
+        }
+    });
+    
+    // Initialize
+    updateCarousel(0, false);
+    startAutoplay();
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing initialization code ...
+    initCarousel();
+});
