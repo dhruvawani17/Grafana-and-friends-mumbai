@@ -1758,6 +1758,71 @@ section {
     object-position: center 10%;
 }
 
+/* Profile actions under cards */
+.profile-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.profile-link {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #eef3f8;
+    color: #0a66c2;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    box-shadow: 0 2px 8px rgba(10,102,194,0.15);
+}
+
+.profile-link i {
+    font-size: 1rem;
+}
+
+.profile-link.linkedin:hover {
+    background: #0a66c2;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10,102,194,0.35);
+}
+
+/* Slight variations for volunteer cards */
+.volunteer-card .profile-link {
+    background: #e9f7ef;
+    color: #0a66c2;
+}
+
+.volunteer-card .profile-link.linkedin:hover {
+    background: #0a66c2;
+    color: #fff;
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+    .profile-link {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-actions {
+        gap: 8px;
+    }
+    .profile-link {
+        width: 32px;
+        height: 32px;
+    }
+    .profile-link i {
+        font-size: 0.95rem;
+    }
+}
+
 /* Volunteers Section */
 .volunteers-section {
     padding: 80px 0;
@@ -1971,6 +2036,16 @@ section {
     .nav-container {
         padding: 1rem;
         flex-wrap: wrap;
+        height: auto;
+        align-items: flex-start;
+    }
+    
+    /* Keep header fixed on mobile */
+    .main-navigation {
+        position: fixed;
+        top: 20px;
+        width: 100%;
+        z-index: 1000;
     }
     
     .logo {
@@ -1998,11 +2073,10 @@ section {
         z-index: 99999;
         border-radius: 0 0 12px 12px;
         border: 2px solid #ff671d;
+        pointer-events: auto;
     }
-    
-    .nav-menu.active {
-        display: flex !important;
-    }
+    .nav-menu.active { display: flex !important; }
+    .nav-container .nav-menu.active { display: flex !important; }
     
     .nav-menu li {
         margin: 0;
@@ -2042,10 +2116,7 @@ section {
         overflow: hidden;
     }
     
-    .hero-section {
-        padding: 80px 0;
-        margin-top: 80px;
-    }
+    .hero-section { padding: 80px 0; margin-top: 80px; }
     
     .hero-section h1 {
         font-size: 2rem;

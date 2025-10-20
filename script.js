@@ -424,22 +424,45 @@ function createRipple(event) {
 
 // Mobile menu toggle functionality
 function toggleMobileMenu() {
-    const navMenu = document.getElementById('navMenu');
     const toggleButton = document.querySelector('.mobile-menu-toggle');
-    
+    let navMenu = document.getElementById('navMenu');
+    // Fallback: try the next sibling UL of the toggle button
+    if (!navMenu && toggleButton) {
+        const sib = toggleButton.nextElementSibling;
+        if (sib && sib.classList && sib.classList.contains('nav-menu')) {
+            navMenu = sib;
+        }
+    }
+
+    if (!navMenu) return; // nothing to toggle
+
     navMenu.classList.toggle('active');
-    
-    // Change icon based on menu state
-    const icon = toggleButton.querySelector('i');
-    if (navMenu.classList.contains('active')) {
-        icon.className = 'fas fa-times';
-    } else {
-        icon.className = 'fas fa-bars';
+
+    // Update icon and aria state
+    if (toggleButton) {
+        const isOpen = navMenu.classList.contains('active');
+        toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const icon = toggleButton.querySelector('i');
+        if (icon) {
+            icon.className = isOpen ? 'fa-solid fa-xmark' : 'fas fa-bars';
+        }
     }
 }
 
 // Close mobile menu when clicking on a link
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure toggle works even without inline onclick
+    const toggleBtn = document.querySelector('.mobile-menu-toggle');
+    const navMenuEl = document.getElementById('navMenu');
+    // Only add listener if there is no inline onclick to avoid double toggling
+    if (toggleBtn && navMenuEl && !toggleBtn.getAttribute('onclick')) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+    }
+
     const navLinks = document.querySelectorAll('.nav-menu a');
     const navMenu = document.getElementById('navMenu');
     const toggleButton = document.querySelector('.mobile-menu-toggle');
